@@ -8,10 +8,10 @@
 [![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
 [![website]](https://loopback.one/)
 
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/transparent/0-profile-details.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/transparent/1-repos-per-language.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/transparent/2-most-commit-language.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/transparent/3-stats.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/transparent/4-productive-time.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/0-profile-details.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/1-repos-per-language.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/2-most-commit-language.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/3-stats.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/4-productive-time.svg">
 
 </div>

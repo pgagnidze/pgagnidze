@@ -28,14 +28,12 @@ jobs:
           EXCLUDED_REPOS: ${{ secrets.EXCLUDED_REPOS }}
           EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
 
-      - name: Deploy to output branch
+      - name: Commit to the output branch of repo
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf .
-          git checkout main -- output/
-          mv output/* .
-          rmdir output
+          git config --global user.name "github-stats[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Update stats $(date -u +%Y-%m-%d)"
+          git commit -m 'temp commit' || echo
+          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- output/
+          git commit -m 'update stats' || echo
           git push origin output -f

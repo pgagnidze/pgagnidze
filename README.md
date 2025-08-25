@@ -9,8 +9,8 @@
 [![website]](https://loopback.one/)
 
 <!-- Transparent GitHub Stats -->
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/overview.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/languages-repo.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/languages-commit.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/overview.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/languages-repo.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/languages-commit.svg">
 
 </div>

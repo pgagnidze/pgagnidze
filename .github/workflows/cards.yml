@@ -29,6 +29,7 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           EXCLUDED_REPOS: ${{ secrets.EXCLUDED_REPOS }}
           EXCLUDED_LANGS: ${{ secrets.EXCLUDED_LANGS }}
+          INCLUDE_ORGS: ${{ secrets.INCLUDE_ORGS }}
 
       - name: Commit to the output branch of repo
         run: |

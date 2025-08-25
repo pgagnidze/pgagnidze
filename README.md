@@ -8,10 +8,9 @@
 [![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
 [![website]](https://loopback.one/)
 
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/0-profile-details.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/1-repos-per-language.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/2-most-commit-language.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/3-stats.svg">
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/main/profile-summary-card-output/rose_pine/4-productive-time.svg">
+<!-- Transparent GitHub Stats -->
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/overview.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/languages-repo.svg">
+<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/output/languages-commit.svg">
 
 </div>

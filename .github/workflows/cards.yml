@@ -34,6 +34,11 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f output/
           git commit -m 'temp commit' || echo
-          git checkout output 2>/dev/null || git checkout --orphan output && git rm -rf . && git checkout main -- output/
+          git checkout output 2>/dev/null || git checkout --orphan output
+          git rm -rf . 2>/dev/null || true
+          git checkout main -- output/
+          mv output/* .
+          rmdir output
+          git add .
           git commit -m 'update stats' || echo
           git push origin output -f

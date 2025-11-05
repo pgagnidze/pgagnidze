@@ -565,7 +565,7 @@ const generateStatsSummary = async (data, profileData) => {
     const repos = (profileData.repositories?.totalCount || 0).toLocaleString();
     const contributedRepos = (profileData.repositoriesContributedTo?.totalCount || 0).toLocaleString();
 
-    const summary = `I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub ${years} ${years === 1 ? 'year' : 'years'} ago and since then I have pushed ${commits} commits, opened ${issues} issues, received ${stars} stars across ${repos} personal projects and contributed to ${contributedRepos} public repositories.`;
+    const summary = `I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub ${years} ${years === 1 ? 'year' : 'years'} ago and since then I have pushed ${commits} commits, opened ${issues} issues, and received ${stars} stars across my projects.`;
 
     if (!existsSync("output")) await mkdir("output", { recursive: true });
     await writeFile("output/stats-summary.txt", summary);

@@ -10,6 +10,7 @@
 
 <!-- Stats Summary -->
 <!--START_SECTION:stats-summary-->
+I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub 9 years ago and since then I have pushed 1,540 commits, opened 53 issues, received 1,182 stars across 16 personal projects and contributed to 16 public repositories.
 <!--END_SECTION:stats-summary-->
 
 <!-- Transparent GitHub Stats -->

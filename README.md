@@ -8,8 +8,12 @@
 [![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
 [![website]](https://loopback.one/)
 
+<!-- Stats Summary -->
+<!--START_SECTION:stats-summary-->
+<!--END_SECTION:stats-summary-->
+
 <!-- Transparent GitHub Stats -->
-<img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/overview.svg">
+<!-- <img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/overview.svg"> -->
 <img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/languages-repo.svg">
 <img src="https://raw.githubusercontent.com/pgagnidze/pgagnidze/refs/heads/output/languages-commit.svg">
 

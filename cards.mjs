@@ -556,6 +556,64 @@ fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
   }
 };
 
+const generateStatsSummary = async (data, profileData) => {
+  try {
+    const years = data.yearsAgo;
+    const commits = data.totalCommits.toLocaleString();
+    const issues = (profileData.issues?.totalCount || 0).toLocaleString();
+    const stars = data.totalStars.toLocaleString();
+    const repos = (profileData.repositories?.totalCount || 0).toLocaleString();
+    const contributedRepos = (profileData.repositoriesContributedTo?.totalCount || 0).toLocaleString();
+
+    const summary = `I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub ${years} ${years === 1 ? 'year' : 'years'} ago and since then I have pushed ${commits} commits, opened ${issues} issues, received ${stars} stars across ${repos} personal projects and contributed to ${contributedRepos} public repositories.`;
+
+    if (!existsSync("output")) await mkdir("output", { recursive: true });
+    await writeFile("output/stats-summary.txt", summary);
+
+    console.log("Generated stats summary");
+    console.log(summary);
+  } catch (error) {
+    console.error("Failed to generate stats summary:", error.message);
+    throw error;
+  }
+};
+
+const updateReadmeWithStats = async () => {
+  try {
+    const readmePath = "README.md";
+    const statsSummaryPath = "output/stats-summary.txt";
+
+    if (!existsSync(statsSummaryPath)) {
+      console.log("Stats summary file not found, skipping README update");
+      return;
+    }
+
+    const readme = await readFile(readmePath, "utf8");
+    const statsSummary = await readFile(statsSummaryPath, "utf8");
+
+    const startMarker = "<!--START_SECTION:stats-summary-->";
+    const endMarker = "<!--END_SECTION:stats-summary-->";
+
+    const startIndex = readme.indexOf(startMarker);
+    const endIndex = readme.indexOf(endMarker);
+
+    if (startIndex === -1 || endIndex === -1) {
+      console.log("README markers not found, skipping update");
+      return;
+    }
+
+    const before = readme.substring(0, startIndex + startMarker.length);
+    const after = readme.substring(endIndex);
+    const updatedReadme = `${before}\n${statsSummary}\n${after}`;
+
+    await writeFile(readmePath, updatedReadme);
+    console.log("Updated README with stats summary");
+  } catch (error) {
+    console.error("Failed to update README:", error.message);
+    throw error;
+  }
+};
+
 const fetchAllContributions = async (collector, contributionsData) => {
   const contributionYears = contributionsData.contributionYears || [];
   console.log("Fetching total contributions across all years...");
@@ -714,7 +772,10 @@ const main = async () => {
       generateOverview(statsData),
       generateLanguages(repoLanguages, "languages-repo.svg", "count"),
       generateLanguages(commitLanguages, "languages-commit.svg", "commits"),
+      generateStatsSummary(statsData, profileData),
     ]);
+
+    await updateReadmeWithStats();
 
     console.log("Successfully generated improved statistics images");
   } catch (error) {

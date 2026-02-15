@@ -38,5 +38,5 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **9 ye
 ### [Personal](https://github.com/pgagnidze)
 
 - **[ena](https://github.com/pgagnidze/ena)** - Georgian programming language
-- **[flyo](https://github.com/pgagnidze/flyo)** - Self-hosted applications on Fly.io
+- **[flyon](https://github.com/pgagnidze/flyon)** - Self-hosted applications on a home server with Podman
 - **[dotfiles](https://github.com/pgagnidze/dotfiles)** - Personal dotfiles for Fedora

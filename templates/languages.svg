@@ -1,7 +1,7 @@
-<svg width="360" height="210" xmlns="http://www.w3.org/2000/svg">
+<svg width="340" height="190" xmlns="http://www.w3.org/2000/svg">
 <style>
 svg {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 21px;
 }
@@ -10,8 +10,8 @@ svg {
   width: calc(100% - 10px);
   height: calc(100% - 10px);
   fill: #00000000;
-  stroke: #8B8B8B22;
-  stroke-width: 1px;
+  stroke: #e4e2e210;
+  stroke-width: 0.5px;
   rx: 6px;
   ry: 6px;
 }
@@ -23,12 +23,14 @@ foreignObject {
 
 h2 {
   margin-top: 0;
-  margin-bottom: 0.75em;
-  line-height: 24px;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgb(72, 148, 224);
-  fill: rgb(72, 148, 224);
+  margin-bottom: 10px;
+  line-height: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8b949e;
+  fill: #8b949e;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 ul {
@@ -40,14 +42,14 @@ ul {
 
 li {
   display: inline-flex;
-  font-size: 12px;
-  margin-right: 2ch;
+  font-size: 11px;
+  margin-right: 1.5ch;
   align-items: center;
   flex-wrap: nowrap;
   transform: translateX(-500%);
-  animation-duration: 1s;
+  animation-duration: 0.6s;
   animation-name: slideIn;
-  animation-function: ease-in-out;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
@@ -64,35 +66,39 @@ div.ellipsis {
 }
 
 .octicon {
-  fill: rgb(248, 96, 105);
-  margin-right: 0.5ch;
+  margin-right: 0.4ch;
   vertical-align: top;
 }
 
 .progress {
   display: flex;
-  height: 8px;
+  height: 4px;
   overflow: hidden;
-  background-color: #00000000;
-  border-radius: 6px;
+  background-color: #161b22;
+  border-radius: 2px;
   outline: 1px solid transparent;
-  margin-bottom: 1em;
+  margin-bottom: 12px;
+}
+
+.progress-item {
+  border-radius: 0;
 }
 
 .lang {
-  font-weight: 600;
-  margin-right: 4px;
-  color: rgb(135, 135, 135);
+  font-weight: 500;
+  margin-right: 3px;
+  color: #c9d1d9;
 }
 
 .percent {
-  color: rgb(150,150,150)
+  color: #484f58;
+  font-weight: 400;
 }
 </style>
 <g>
 <rect x="5" y="5" id="background" />
 <g>
-<foreignObject x="21" y="17" width="318" height="176">
+<foreignObject x="21" y="17" width="298" height="160">
 <div xmlns="http://www.w3.org/1999/xhtml" class="ellipsis">
 
 <h2>Most Used Languages</h2>

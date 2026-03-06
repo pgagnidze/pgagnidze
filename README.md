@@ -27,11 +27,15 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 [<img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="250" />](https://gh-crawl.fly.dev/dungeon/info)
 
-| | | | | | | |
-|---|---|---|---|---|---|---|
-| [Up](https://gh-crawl.fly.dev/dungeon/move?dir=up&redirect=https://github.com/pgagnidze) | [Down](https://gh-crawl.fly.dev/dungeon/move?dir=down&redirect=https://github.com/pgagnidze) | [Left](https://gh-crawl.fly.dev/dungeon/move?dir=left&redirect=https://github.com/pgagnidze) | [Right](https://gh-crawl.fly.dev/dungeon/move?dir=right&redirect=https://github.com/pgagnidze) | [Attack](https://gh-crawl.fly.dev/dungeon/attack?redirect=https://github.com/pgagnidze) | [Pickup](https://gh-crawl.fly.dev/dungeon/pickup?redirect=https://github.com/pgagnidze) | [Descend](https://gh-crawl.fly.dev/dungeon/descend?redirect=https://github.com/pgagnidze) |
+| | | |
+|:---:|:---:|:---:|
+| [↖](https://gh-crawl.fly.dev/dungeon/move?dir=ul&redirect=https://github.com/pgagnidze) | [↑](https://gh-crawl.fly.dev/dungeon/move?dir=up&redirect=https://github.com/pgagnidze) | [↗](https://gh-crawl.fly.dev/dungeon/move?dir=ur&redirect=https://github.com/pgagnidze) |
+| [←](https://gh-crawl.fly.dev/dungeon/move?dir=left&redirect=https://github.com/pgagnidze) | [Wait](https://gh-crawl.fly.dev/dungeon/move?dir=wait&redirect=https://github.com/pgagnidze) | [→](https://gh-crawl.fly.dev/dungeon/move?dir=right&redirect=https://github.com/pgagnidze) |
+| [↙](https://gh-crawl.fly.dev/dungeon/move?dir=dl&redirect=https://github.com/pgagnidze) | [↓](https://gh-crawl.fly.dev/dungeon/move?dir=down&redirect=https://github.com/pgagnidze) | [↘](https://gh-crawl.fly.dev/dungeon/move?dir=dr&redirect=https://github.com/pgagnidze) |
 
-[New Game](https://gh-crawl.fly.dev/dungeon/new?redirect=https://github.com/pgagnidze) | `@` player `r` rat `s` snake `k` skeleton `g` ghost `D` dragon `!` potion `/` weapon `]` shield `>` stairs
+[Attack](https://gh-crawl.fly.dev/dungeon/attack?redirect=https://github.com/pgagnidze) | [Pickup](https://gh-crawl.fly.dev/dungeon/pickup?redirect=https://github.com/pgagnidze) | [Descend](https://gh-crawl.fly.dev/dungeon/descend?redirect=https://github.com/pgagnidze) | [New Game](https://gh-crawl.fly.dev/dungeon/new?redirect=https://github.com/pgagnidze)
+
+`@` player `r` rat `s` snake `k` skeleton `g` ghost `D` dragon `!` potion `/` weapon `]` shield `>` stairs
 
 *Powered by [mote](https://github.com/luanvil/mote) -- auto-resets after 30 min of inactivity*
 <!--END_SECTION:dungeon-->

@@ -386,6 +386,11 @@ local DIR_OFFSETS = {
     down = { 0, 1 },
     left = { -1, 0 },
     right = { 1, 0 },
+    ul = { -1, -1 },
+    ur = { 1, -1 },
+    dl = { -1, 1 },
+    dr = { 1, 1 },
+    wait = { 0, 0 },
 }
 
 function game.move(state, dir)
@@ -400,6 +405,12 @@ function game.move(state, dir)
     local player = state.player
     local nx = player.x + offset[1]
     local ny = player.y + offset[2]
+
+    if dir == "wait" then
+        state.message = "You wait..."
+        game.monster_turn(state)
+        return
+    end
 
     if ny < 1 or ny > MAP_HEIGHT or nx < 1 or nx > MAP_WIDTH then
         state.message = "A wall blocks your path"

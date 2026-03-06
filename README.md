@@ -25,17 +25,17 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 <!--START_SECTION:dungeon-->
 > Click the direction buttons to explore. Fight monsters, collect loot, find the stairs.
 
-[<img src="https://gh-crawl.fly.dev/dungeon/status" alt="status" />](https://gh-crawl.fly.dev/dungeon/info)
+[<img src="https://gh-crawl.fly.dev/dungeon/status?v=1" alt="status" />](https://gh-crawl.fly.dev/dungeon/info)
 
 | | | | | |
 |---|---|---|---|---|
-| <img src="https://gh-crawl.fly.dev/dungeon/tile?x=0&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=1&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=2&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=3&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=4&y=0" width="50" /> |
-| <img src="https://gh-crawl.fly.dev/dungeon/tile?x=0&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=1&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=2&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=3&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=4&y=1" width="50" /> |
-| <img src="https://gh-crawl.fly.dev/dungeon/tile?x=0&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=1&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=2&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=3&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=4&y=2" width="50" /> |
-| <img src="https://gh-crawl.fly.dev/dungeon/tile?x=0&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=1&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=2&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=3&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=4&y=3" width="50" /> |
-| <img src="https://gh-crawl.fly.dev/dungeon/tile?x=0&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=1&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=2&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=3&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?x=4&y=4" width="50" /> |
+| <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=0&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=1&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=2&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=3&y=0" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=4&y=0" width="50" /> |
+| <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=0&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=1&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=2&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=3&y=1" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=4&y=1" width="50" /> |
+| <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=0&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=1&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=2&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=3&y=2" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=4&y=2" width="50" /> |
+| <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=0&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=1&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=2&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=3&y=3" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=4&y=3" width="50" /> |
+| <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=0&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=1&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=2&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=3&y=4" width="50" /> | <img src="https://gh-crawl.fly.dev/dungeon/tile?v=1&x=4&y=4" width="50" /> |
 
-[<img src="https://gh-crawl.fly.dev/dungeon/message" alt="message" />](https://github.com/pgagnidze)
+[<img src="https://gh-crawl.fly.dev/dungeon/message?v=1" alt="message" />](https://github.com/pgagnidze)
 
 | | | | | | | |
 |---|---|---|---|---|---|---|

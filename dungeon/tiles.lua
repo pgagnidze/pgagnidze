@@ -7,15 +7,17 @@ local format = string.format
 local floor = math.floor
 local sub = string.sub
 
--- tile dimensions --
+-- layout --
 
 local TILE_SIZE = 50
+local GRID = 5
 local GLYPH_W, GLYPH_H = 5, 7
 local GLYPH_SCALE = 4
-local STATUS_WIDTH = 270
-local STATUS_HEIGHT = 40
-local MSG_WIDTH = 270
-local MSG_HEIGHT = 30
+local CANVAS_W = TILE_SIZE * GRID
+local STATUS_H = 24
+local MSG_H = 20
+local GAP = 2
+local CANVAS_H = STATUS_H + GAP + TILE_SIZE * GRID + GAP + MSG_H
 
 -- pico-8 palette as rgb tables --
 
@@ -41,7 +43,7 @@ local PICO8 = {
 local REMEMBERED_WALL_FG = { 17, 24, 51 }
 local REMEMBERED_FLOOR_FG = { 10, 10, 10 }
 
--- tile definitions: { bg, fg, symbol } --
+-- tile definitions --
 
 local TILE_DEFS = {
     wall = { bg = PICO8.navy, fg = PICO8.darkgrey, symbol = "#" },
@@ -101,35 +103,29 @@ local function text_width(text, scale)
     return #text * spacing - scale
 end
 
--- tile rendering --
+-- draw a single tile onto the canvas --
 
-function tiles.render(tile_type)
+local function draw_tile(pixels, tx, ty, tile_type)
     local def = TILE_DEFS[tile_type] or TILE_DEFS.fog
-    local pixels = {}
-    fill_rect(pixels, TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE, def.bg)
+    fill_rect(pixels, CANVAS_W, tx, ty, TILE_SIZE, TILE_SIZE, def.bg)
     local gw = GLYPH_W * GLYPH_SCALE
     local gh = GLYPH_H * GLYPH_SCALE
-    local ox = floor((TILE_SIZE - gw) / 2)
-    local oy = floor((TILE_SIZE - gh) / 2)
-    draw_glyph(pixels, TILE_SIZE, ox, oy, def.symbol, def.fg, GLYPH_SCALE)
-    return png.encode(TILE_SIZE, TILE_SIZE, pixels)
+    local ox = tx + floor((TILE_SIZE - gw) / 2)
+    local oy = ty + floor((TILE_SIZE - gh) / 2)
+    draw_glyph(pixels, CANVAS_W, ox, oy, def.symbol, def.fg, GLYPH_SCALE)
 end
 
-function tiles.render_fog()
-    return tiles.render("fog")
-end
+-- draw status bar --
 
--- status bar --
-
-function tiles.render_status(state)
-    local pixels = {}
-    fill_rect(pixels, STATUS_WIDTH, 0, 0, STATUS_WIDTH, STATUS_HEIGHT, PICO8.black)
+local function draw_status(pixels, y, state)
+    fill_rect(pixels, CANVAS_W, 0, y, CANVAS_W, STATUS_H, PICO8.black)
 
     if not state then
         local text = "No active game"
-        local tw = text_width(text, 2)
-        draw_text(pixels, STATUS_WIDTH, floor((STATUS_WIDTH - tw) / 2), 12, text, PICO8.darkgrey, 2)
-        return png.encode(STATUS_WIDTH, STATUS_HEIGHT, pixels)
+        local scale = 2
+        local tw = text_width(text, scale)
+        draw_text(pixels, CANVAS_W, floor((CANVAS_W - tw) / 2), y + 4, text, PICO8.darkgrey, scale)
+        return
     end
 
     local player = state.player
@@ -138,10 +134,10 @@ function tiles.render_status(state)
     local floor_text = format("FL:%d", state.floor)
 
     local hp_ratio = player.hp / player.max_hp
-    local bar_width = 80
-    local bar_height = 12
-    local bar_x = 5
-    local bar_y = floor((STATUS_HEIGHT - bar_height) / 2)
+    local bar_width = 60
+    local bar_height = 10
+    local bar_x = 4
+    local bar_y = y + floor((STATUS_H - bar_height) / 2)
 
     local hp_color = PICO8.lime
     if hp_ratio < 0.3 then
@@ -150,47 +146,66 @@ function tiles.render_status(state)
         hp_color = PICO8.orange
     end
 
-    fill_rect(pixels, STATUS_WIDTH, bar_x, bar_y, bar_width, bar_height, PICO8.navy)
-    fill_rect(pixels, STATUS_WIDTH, bar_x, bar_y,
+    fill_rect(pixels, CANVAS_W, bar_x, bar_y, bar_width, bar_height, PICO8.navy)
+    fill_rect(pixels, CANVAS_W, bar_x, bar_y,
         floor(bar_width * hp_ratio), bar_height, hp_color)
 
     local scale = 1
-    local text_y = floor((STATUS_HEIGHT - GLYPH_H * scale) / 2)
+    local text_y = y + floor((STATUS_H - GLYPH_H * scale) / 2)
     local hp_tw = text_width(hp_text, scale)
-    draw_text(pixels, STATUS_WIDTH,
+    draw_text(pixels, CANVAS_W,
         floor(bar_x + (bar_width - hp_tw) / 2), text_y, hp_text, PICO8.white, scale)
-    draw_text(pixels, STATUS_WIDTH,
-        bar_x + bar_width + 10, text_y, stats_text, PICO8.grey, scale)
+    draw_text(pixels, CANVAS_W,
+        bar_x + bar_width + 8, text_y, stats_text, PICO8.grey, scale)
 
     local fl_tw = text_width(floor_text, scale)
-    draw_text(pixels, STATUS_WIDTH,
-        STATUS_WIDTH - fl_tw - 5, text_y, floor_text, PICO8.yellow, scale)
+    draw_text(pixels, CANVAS_W,
+        CANVAS_W - fl_tw - 4, text_y, floor_text, PICO8.yellow, scale)
 
     if state.dead then
-        fill_rect(pixels, STATUS_WIDTH, 0, 0, STATUS_WIDTH, STATUS_HEIGHT, { 0, 0, 0 })
+        fill_rect(pixels, CANVAS_W, 0, y, CANVAS_W, STATUS_H, PICO8.black)
         local dead_text = "YOU DIED"
-        local dead_scale = 3
+        local dead_scale = 2
         local dtw = text_width(dead_text, dead_scale)
-        local dty = floor((STATUS_HEIGHT - GLYPH_H * dead_scale) / 2)
-        draw_text(pixels, STATUS_WIDTH,
-            floor((STATUS_WIDTH - dtw) / 2), dty, dead_text, PICO8.red, dead_scale)
+        local dty = y + floor((STATUS_H - GLYPH_H * dead_scale) / 2)
+        draw_text(pixels, CANVAS_W,
+            floor((CANVAS_W - dtw) / 2), dty, dead_text, PICO8.red, dead_scale)
     end
-
-    return png.encode(STATUS_WIDTH, STATUS_HEIGHT, pixels)
 end
 
--- message bar --
+-- draw message bar --
 
-function tiles.render_message(msg)
-    local pixels = {}
-    fill_rect(pixels, MSG_WIDTH, 0, 0, MSG_WIDTH, MSG_HEIGHT, PICO8.black)
+local function draw_message(pixels, y, msg)
+    fill_rect(pixels, CANVAS_W, 0, y, CANVAS_W, MSG_H, PICO8.black)
     if msg and #msg > 0 then
         local scale = 1
         local tw = text_width(msg, scale)
-        local ty = floor((MSG_HEIGHT - GLYPH_H * scale) / 2)
-        draw_text(pixels, MSG_WIDTH, floor((MSG_WIDTH - tw) / 2), ty, msg, PICO8.grey, scale)
+        local ty = y + floor((MSG_H - GLYPH_H * scale) / 2)
+        local tx = floor((CANVAS_W - tw) / 2)
+        if tx < 2 then tx = 2 end
+        draw_text(pixels, CANVAS_W, tx, ty, msg, PICO8.grey, scale)
     end
-    return png.encode(MSG_WIDTH, MSG_HEIGHT, pixels)
+end
+
+-- main render: single canvas with everything --
+
+function tiles.render_canvas(state, tile_types)
+    local pixels = {}
+    fill_rect(pixels, CANVAS_W, 0, 0, CANVAS_W, CANVAS_H, PICO8.black)
+
+    draw_status(pixels, 0, state)
+
+    local grid_y = STATUS_H + GAP
+    for gy = 0, GRID - 1 do
+        for gx = 0, GRID - 1 do
+            local idx = gy * GRID + gx + 1
+            draw_tile(pixels, gx * TILE_SIZE, grid_y + gy * TILE_SIZE, tile_types[idx])
+        end
+    end
+
+    draw_message(pixels, grid_y + TILE_SIZE * GRID + GAP, state and state.message or "")
+
+    return png.encode(CANVAS_W, CANVAS_H, pixels)
 end
 
 return tiles

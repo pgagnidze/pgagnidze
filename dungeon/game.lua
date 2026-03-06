@@ -556,44 +556,56 @@ end
 
 local tiles = require("tiles")
 
-function game.render_tile(state, wx, wy)
+local function resolve_tile(state, wx, wy)
     if wy < 1 or wy > MAP_HEIGHT or wx < 1 or wx > MAP_WIDTH then
-        return tiles.render("wall")
+        return "wall"
     end
 
     local visible = state.fov[wy][wx]
     local remembered = state.memory[wy][wx]
 
     if not visible and not remembered then
-        return tiles.render_fog()
+        return "fog"
     end
 
     if visible then
         local player = state.player
         if wx == player.x and wy == player.y then
-            return tiles.render("player")
+            return "player"
         end
 
         local monster = find_monster_at(state, wx, wy)
         if monster then
-            return tiles.render(monster.symbol)
+            return monster.symbol
         end
 
         local item = find_item_at(state, wx, wy)
         if item then
-            return tiles.render(item.symbol)
+            return item.symbol
         end
     end
 
     local tile = state.map[wy][wx]
     if tile == TILE_WALL then
-        return tiles.render(visible and "wall" or "remembered_wall")
+        return visible and "wall" or "remembered_wall"
     elseif tile == TILE_STAIRS then
-        if visible then return tiles.render("stairs") end
-        return tiles.render("remembered_floor")
+        return visible and "stairs" or "remembered_floor"
     end
 
-    return tiles.render(visible and "floor" or "remembered_floor")
+    return visible and "floor" or "remembered_floor"
+end
+
+function game.render_canvas(state)
+    local player = state.player
+    local tile_types = {}
+    for vy = 0, 4 do
+        for vx = 0, 4 do
+            local wx = player.x + (vx - 2)
+            local wy = player.y + (vy - 2)
+            tile_types[vy * 5 + vx + 1] = resolve_tile(state, wx, wy)
+        end
+    end
+    return tiles.render_canvas(state, tile_types)
 end
 
 return game

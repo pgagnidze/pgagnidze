@@ -2,7 +2,6 @@
 
 local mote = require("mote")
 local dungeon = require("game")
-local tiles = require("tiles")
 
 local format = string.format
 
@@ -38,34 +37,11 @@ local function set_png_headers(ctx)
     ctx:set("Cache-Control", "no-cache,max-age=0")
 end
 
--- tile endpoint --
+-- view endpoint (single canvas) --
 
-mote.get("/dungeon/tile", function(ctx)
-    local vx = tonumber(ctx.query.x) or 0
-    local vy = tonumber(ctx.query.y) or 0
-
+mote.get("/dungeon/view", function(ctx)
     set_png_headers(ctx)
-
-    local state = get_game()
-    local player = state.player
-    local wx = player.x + (vx - 2)
-    local wy = player.y + (vy - 2)
-
-    ctx.response.body = dungeon.render_tile(state, wx, wy)
-end)
-
--- status endpoint --
-
-mote.get("/dungeon/status", function(ctx)
-    set_png_headers(ctx)
-    ctx.response.body = tiles.render_status(get_game())
-end)
-
--- message endpoint --
-
-mote.get("/dungeon/message", function(ctx)
-    set_png_headers(ctx)
-    ctx.response.body = tiles.render_message(get_game().message)
+    ctx.response.body = dungeon.render_canvas(get_game())
 end)
 
 -- action endpoints --

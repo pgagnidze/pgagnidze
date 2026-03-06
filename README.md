@@ -63,6 +63,7 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 ### [Owloops](https://github.com/Owloops) - cli tools that work
 
+- **[browserbird](https://github.com/Owloops/browserbird)** - Self-hosted AI agent for Slack with a browser and scheduler
 - **[claude-powerline](https://github.com/Owloops/claude-powerline)** - Vim-style powerline statusline for Claude Code
 - **[updo](https://github.com/Owloops/updo)** - Uptime monitoring CLI with alerting
 - **[cdko](https://github.com/Owloops/cdko)** - Multi-Account & Multi-Region CDK Orchestrator

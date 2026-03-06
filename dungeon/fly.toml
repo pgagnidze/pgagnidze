@@ -1,0 +1,26 @@
+app = "gh-crawl"
+primary_region = "ams"
+
+[build]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[http_service.concurrency]
+  type = "requests"
+  soft_limit = 200
+  hard_limit = 250
+
+[env]
+  PORT = "8080"
+  REDIRECT_URL = "https://github.com/pgagnidze"
+
+[vm]
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 1

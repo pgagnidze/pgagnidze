@@ -1,13 +1,5 @@
 <div align="center">
 
-# Hi there 👋
-
-[linkedin]: https://img.shields.io/static/v1?label=&message=LinkedIn&&color=3B3B7A&logo=linkedin
-[website]: https://img.shields.io/static/v1?label=&message=Website&&color=3B3B7A&logo=website
-
-[![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
-[![website]](https://loopback.one/)
-
 ## Dungeon Crawler
 
 <!--START_SECTION:dungeon-->
@@ -15,8 +7,7 @@
 <table>
   <tr>
     <td colspan="5" align="center">
-      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="250" /></a><br>
-      <sub><code>@</code> player <code>r</code> rat <code>s</code> snake <code>k</code> skeleton <code>g</code> ghost <code>D</code> dragon <code>!</code> potion <code>/</code> weapon <code>]</code> shield <code>></code> stairs</sub>
+      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="250" /></a>
     </td>
   </tr>
   <tr>
@@ -42,12 +33,27 @@
     <td align="center"><a href="https://gh-crawl.fly.dev/dungeon/move?dir=down&redirect=https://github.com/pgagnidze">↓</a></td>
     <td align="center"><a href="https://gh-crawl.fly.dev/dungeon/move?dir=dr&redirect=https://github.com/pgagnidze">↘</a></td>
   </tr>
-  <tr>
-    <td colspan="5" align="center"><sub>Powered by <a href="https://github.com/luanvil/mote">mote</a> · auto-resets after 30 min of inactivity</sub></td>
-  </tr>
 </table>
 
+<details>
+<summary>How to play</summary>
+<br>
+<code>@</code> player <code>r</code> rat <code>s</code> snake <code>k</code> skeleton <code>g</code> ghost <code>D</code> dragon <code>!</code> potion <code>/</code> weapon <code>]</code> shield <code>></code> stairs
+<br><br>
+Move into rooms to explore. Attack adjacent monsters. Pick up items. Find the stairs to descend deeper.
+<br>
+Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com/luanvil/mote">mote</a>
+</details>
+
 <!--END_SECTION:dungeon-->
+
+---
+
+[linkedin]: https://img.shields.io/static/v1?label=&message=LinkedIn&&color=3B3B7A&logo=linkedin
+[website]: https://img.shields.io/static/v1?label=&message=Website&&color=3B3B7A&logo=website
+
+[![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
+[![website]](https://loopback.one/)
 
 <!-- Stats Summary -->
 <!--START_SECTION:stats-summary-->

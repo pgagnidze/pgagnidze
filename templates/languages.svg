@@ -10,8 +10,8 @@ svg {
   width: calc(100% - 10px);
   height: calc(100% - 10px);
   fill: #00000000;
-  stroke: #e4e2e210;
-  stroke-width: 0.5px;
+  stroke: #e4e2e2;
+  stroke-width: 1px;
   rx: 6px;
   ry: 6px;
 }
@@ -27,9 +27,9 @@ h2 {
   line-height: 20px;
   font-size: 13px;
   font-weight: 500;
-  color: #8b949e;
-  fill: #8b949e;
-  letter-spacing: 0.5px;
+  color: #656d76;
+  fill: #656d76;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
 }
 
@@ -42,7 +42,7 @@ ul {
 
 li {
   display: inline-flex;
-  font-size: 11px;
+  font-size: 12px;
   margin-right: 1.5ch;
   align-items: center;
   flex-wrap: nowrap;
@@ -72,10 +72,10 @@ div.ellipsis {
 
 .progress {
   display: flex;
-  height: 4px;
+  height: 8px;
   overflow: hidden;
-  background-color: #161b22;
-  border-radius: 2px;
+  background-color: #e4e2e2;
+  border-radius: 6px;
   outline: 1px solid transparent;
   margin-bottom: 12px;
 }
@@ -84,14 +84,22 @@ div.ellipsis {
   border-radius: 0;
 }
 
+.progress-item:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.progress-item:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
 .lang {
-  font-weight: 500;
+  font-weight: 600;
   margin-right: 3px;
-  color: #c9d1d9;
+  color: #1f2328;
 }
 
 .percent {
-  color: #484f58;
+  color: #656d76;
   font-weight: 400;
 }
 </style>

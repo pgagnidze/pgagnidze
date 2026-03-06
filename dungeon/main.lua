@@ -35,9 +35,7 @@ end
 
 local function set_png_headers(ctx)
     ctx.response.type = "image/png"
-    ctx:set("Cache-Control", "no-cache, no-store, must-revalidate")
-    ctx:set("Pragma", "no-cache")
-    ctx:set("Expires", "0")
+    ctx:set("Cache-Control", "no-cache,max-age=0")
 end
 
 -- tile endpoint --

@@ -47,14 +47,6 @@ Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com
 
 <!--END_SECTION:dungeon-->
 
----
-
-[linkedin]: https://img.shields.io/static/v1?label=&message=LinkedIn&&color=3B3B7A&logo=linkedin
-[website]: https://img.shields.io/static/v1?label=&message=Website&&color=3B3B7A&logo=website
-
-[![linkedin]](https://linkedin.com/in/papuna-gagnidze/)
-[![website]](https://loopback.one/)
-
 <!-- Stats Summary -->
 <!--START_SECTION:stats-summary-->
 I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 years** ago and since then I have pushed **3,398 commits**, opened **57 issues**, and received **1,954 stars** across my projects.

@@ -31,10 +31,10 @@ local function reset_game()
     return current_game
 end
 
--- svg helpers --
+-- png helpers --
 
-local function set_svg_headers(ctx)
-    ctx.response.type = "image/svg+xml"
+local function set_png_headers(ctx)
+    ctx.response.type = "image/png"
     ctx:set("Cache-Control", "no-cache, no-store, must-revalidate")
     ctx:set("Pragma", "no-cache")
     ctx:set("Expires", "0")
@@ -46,7 +46,7 @@ mote.get("/dungeon/tile", function(ctx)
     local vx = tonumber(ctx.query.x) or 0
     local vy = tonumber(ctx.query.y) or 0
 
-    set_svg_headers(ctx)
+    set_png_headers(ctx)
 
     local state = get_game()
     local player = state.player
@@ -59,14 +59,14 @@ end)
 -- status endpoint --
 
 mote.get("/dungeon/status", function(ctx)
-    set_svg_headers(ctx)
+    set_png_headers(ctx)
     ctx.response.body = tiles.render_status(get_game())
 end)
 
 -- message endpoint --
 
 mote.get("/dungeon/message", function(ctx)
-    set_svg_headers(ctx)
+    set_png_headers(ctx)
     ctx.response.body = tiles.render_message(get_game().message)
 end)
 

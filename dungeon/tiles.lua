@@ -9,10 +9,10 @@ local sub = string.sub
 
 -- layout --
 
-local TILE_SIZE = 50
-local GRID = 5
+local TILE_SIZE = 36
+local GRID = 7
 local GLYPH_W, GLYPH_H = 5, 7
-local GLYPH_SCALE = 4
+local GLYPH_SCALE = 3
 local CANVAS_W = TILE_SIZE * GRID
 local STATUS_H = 24
 local MSG_H = 20
@@ -207,5 +207,7 @@ function tiles.render_canvas(state, tile_types)
 
     return png.encode(CANVAS_W, CANVAS_H, pixels)
 end
+
+tiles.GRID = GRID
 
 return tiles

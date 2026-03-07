@@ -608,12 +608,14 @@ end
 
 function game.render_canvas(state)
     local player = state.player
+    local grid = tiles.GRID
+    local half = floor(grid / 2)
     local tile_types = {}
-    for vy = 0, 4 do
-        for vx = 0, 4 do
-            local wx = player.x + (vx - 2)
-            local wy = player.y + (vy - 2)
-            tile_types[vy * 5 + vx + 1] = resolve_tile(state, wx, wy)
+    for vy = 0, grid - 1 do
+        for vx = 0, grid - 1 do
+            local wx = player.x + (vx - half)
+            local wy = player.y + (vy - half)
+            tile_types[vy * grid + vx + 1] = resolve_tile(state, wx, wy)
         end
     end
     return tiles.render_canvas(state, tile_types)

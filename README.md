@@ -7,7 +7,7 @@
 <table>
   <tr>
     <td colspan="5" align="center">
-      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="250" /></a>
+      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="252" /></a>
     </td>
   </tr>
   <tr>

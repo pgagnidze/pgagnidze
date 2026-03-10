@@ -10,6 +10,7 @@ local format = string.format
 local MAP_WIDTH = 40
 local MAP_HEIGHT = 30
 local FOV_RADIUS = 5
+local REGEN_INTERVAL = 3
 
 local TILE_WALL = 1
 local TILE_FLOOR = 2
@@ -321,6 +322,7 @@ function game.new_game()
         map = map,
         floor = 1,
         dead = false,
+        turns = 0,
         message = "You enter the dungeon...",
         player = {
             x = px,
@@ -366,7 +368,10 @@ end
 
 local function find_adjacent_monster(state)
     local px, py = state.player.x, state.player.y
-    local dirs = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } }
+    local dirs = {
+        { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 },
+        { -1, -1 }, { 1, -1 }, { -1, 1 }, { 1, 1 },
+    }
     for i = 1, #dirs do
         local m = find_monster_at(state, px + dirs[i][1], py + dirs[i][2])
         if m then return m end
@@ -377,6 +382,68 @@ end
 local function refresh_fov(state)
     state.fov = compute_fov(state.map, state.player.x, state.player.y, FOV_RADIUS)
     update_memory(state.memory, state.fov)
+end
+
+-- monster turn --
+
+function game.monster_turn(state)
+    if state.dead then return end
+
+    local player = state.player
+    local monsters = state.monsters
+
+    for i = 1, #monsters do
+        local m = monsters[i]
+        if m.hp > 0 then
+            local dx = player.x - m.x
+            local dy = player.y - m.y
+            local dist = abs(dx) + abs(dy)
+            local chebyshev = max(abs(dx), abs(dy))
+
+            if chebyshev == 1 then
+                local damage = max(1, m.attack - player.defense)
+                player.hp = player.hp - damage
+                state.message = state.message..format(" The %s hits you for %d!", m.name, damage)
+
+                if player.hp <= 0 then
+                    player.hp = 0
+                    state.dead = true
+                    state.message = format("Killed by a %s on floor %d!", m.name, state.floor)
+                    return
+                end
+            elseif dist <= 5 then
+                local nx, ny = m.x, m.y
+                if abs(dx) >= abs(dy) then
+                    nx = m.x + (dx > 0 and 1 or -1)
+                else
+                    ny = m.y + (dy > 0 and 1 or -1)
+                end
+
+                if ny >= 1 and ny <= MAP_HEIGHT and nx >= 1 and nx <= MAP_WIDTH
+                    and state.map[ny][nx] ~= TILE_WALL
+                    and not find_monster_at(state, nx, ny)
+                    and not (nx == player.x and ny == player.y) then
+                    m.x = nx
+                    m.y = ny
+                end
+            end
+        end
+    end
+end
+
+local function advance_turn(state)
+    state.turns = state.turns + 1
+    local hp_before = state.player.hp
+    game.monster_turn(state)
+    if state.dead then return end
+    local took_damage = state.player.hp < hp_before
+    if not took_damage and state.turns % REGEN_INTERVAL == 0 then
+        local player = state.player
+        if player.hp < player.max_hp then
+            player.hp = min(player.max_hp, player.hp + 1)
+            state.message = state.message .. " (HP regen)"
+        end
+    end
 end
 
 -- actions --
@@ -408,7 +475,7 @@ function game.move(state, dir)
 
     if dir == "wait" then
         state.message = "You wait..."
-        game.monster_turn(state)
+        advance_turn(state)
         return
     end
 
@@ -443,7 +510,7 @@ function game.move(state, dir)
         end
     end
 
-    game.monster_turn(state)
+    advance_turn(state)
 end
 
 function game.attack(state)
@@ -464,7 +531,7 @@ function game.attack(state)
         state.message = format("You defeated the %s!", monster.name)
     end
 
-    game.monster_turn(state)
+    advance_turn(state)
 end
 
 function game.pickup(state)
@@ -517,50 +584,6 @@ function game.descend(state)
     refresh_fov(state)
 
     state.message = format("You descend to floor %d...", state.floor)
-end
-
-function game.monster_turn(state)
-    if state.dead then return end
-
-    local player = state.player
-    local monsters = state.monsters
-
-    for i = 1, #monsters do
-        local m = monsters[i]
-        if m.hp > 0 then
-            local dx = player.x - m.x
-            local dy = player.y - m.y
-            local dist = abs(dx) + abs(dy)
-
-            if dist == 1 then
-                local damage = max(1, m.attack - player.defense)
-                player.hp = player.hp - damage
-                state.message = state.message..format(" The %s hits you for %d!", m.name, damage)
-
-                if player.hp <= 0 then
-                    player.hp = 0
-                    state.dead = true
-                    state.message = format("Killed by a %s on floor %d!", m.name, state.floor)
-                    return
-                end
-            elseif dist <= 5 then
-                local nx, ny = m.x, m.y
-                if abs(dx) >= abs(dy) then
-                    nx = m.x + (dx > 0 and 1 or -1)
-                else
-                    ny = m.y + (dy > 0 and 1 or -1)
-                end
-
-                if ny >= 1 and ny <= MAP_HEIGHT and nx >= 1 and nx <= MAP_WIDTH
-                    and state.map[ny][nx] ~= TILE_WALL
-                    and not find_monster_at(state, nx, ny)
-                    and not (nx == player.x and ny == player.y) then
-                    m.x = nx
-                    m.y = ny
-                end
-            end
-        end
-    end
 end
 
 -- rendering --
@@ -619,6 +642,108 @@ function game.render_canvas(state)
         end
     end
     return tiles.render_canvas(state, tile_types)
+end
+
+-- state export --
+
+local TILE_CHAR = {
+    wall = "#", floor = ".", player = "@",
+    rat = "r", snake = "s", skeleton = "k", ghost = "g", dragon = "D",
+    potion = "!", weapon = "/", shield = "]", stairs = ">",
+    fog = " ", remembered_wall = "#", remembered_floor = ".",
+}
+
+function game.get_state_data(state)
+    local player = state.player
+    local grid = tiles.GRID
+    local half = floor(grid / 2)
+    local rows = {}
+
+    for vy = 0, grid - 1 do
+        local row = {}
+        for vx = 0, grid - 1 do
+            local wx = player.x + (vx - half)
+            local wy = player.y + (vy - half)
+            local tile_type = resolve_tile(state, wx, wy)
+            row[vx + 1] = TILE_CHAR[tile_type] or " "
+        end
+        rows[vy + 1] = table.concat(row)
+    end
+
+    -- visible monsters
+    local vis_monsters = {}
+    for i = 1, #state.monsters do
+        local m = state.monsters[i]
+        if m.hp > 0 and m.y >= 1 and m.y <= MAP_HEIGHT
+            and m.x >= 1 and m.x <= MAP_WIDTH
+            and state.fov[m.y][m.x] then
+            insert(vis_monsters, {
+                name = m.name,
+                hp = m.hp, max_hp = m.max_hp,
+                attack = m.attack, defense = m.defense,
+                dx = m.x - player.x, dy = m.y - player.y,
+            })
+        end
+    end
+
+    -- visible items
+    local vis_items = {}
+    for i = 1, #state.items do
+        local item = state.items[i]
+        if item.y >= 1 and item.y <= MAP_HEIGHT
+            and item.x >= 1 and item.x <= MAP_WIDTH
+            and state.fov[item.y][item.x] then
+            insert(vis_items, {
+                name = item.name,
+                effect = item.effect, value = item.value,
+                dx = item.x - player.x, dy = item.y - player.y,
+            })
+        end
+    end
+
+    -- available actions
+    local actions = {}
+    for dir, offset in pairs(DIR_OFFSETS) do
+        local nx = player.x + offset[1]
+        local ny = player.y + offset[2]
+        if dir == "wait" then
+            insert(actions, "wait")
+        elseif ny >= 1 and ny <= MAP_HEIGHT and nx >= 1 and nx <= MAP_WIDTH
+            and state.map[ny][nx] ~= TILE_WALL
+            and not find_monster_at(state, nx, ny) then
+            insert(actions, "move:" .. dir)
+        end
+    end
+
+    if find_adjacent_monster(state) then
+        insert(actions, "attack")
+    end
+
+    local item_here = find_item_at(state, player.x, player.y)
+    if item_here then
+        insert(actions, "pickup")
+    end
+
+    if state.map[player.y][player.x] == TILE_STAIRS then
+        insert(actions, "descend")
+    end
+
+    table.sort(actions)
+
+    return {
+        grid = rows,
+        player = {
+            hp = player.hp, max_hp = player.max_hp,
+            attack = player.attack, defense = player.defense,
+            x = player.x, y = player.y,
+        },
+        floor = state.floor,
+        dead = state.dead,
+        message = state.message,
+        visible_monsters = vis_monsters,
+        visible_items = vis_items,
+        available_actions = actions,
+    }
 end
 
 return game

@@ -1,4 +1,4 @@
-FROM nickblah/luajit:2.1-luarocks-alpine
+FROM docker.io/nickblah/luajit:2.1-luarocks-alpine
 
 WORKDIR /app
 

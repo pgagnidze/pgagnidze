@@ -1,6 +1,8 @@
 local png = require("png")
 local font = require("font")
 
+local DIM_FACTOR = 0.15
+
 local function prepare_sprites(data)
     if not data then return nil end
     for _, spr in pairs(data) do
@@ -19,6 +21,26 @@ local function prepare_sprites(data)
         end
         spr.px = nil
     end
+    local dim_add = {}
+    for name, spr in pairs(data) do
+        if name:match("^wall") or name == "floor" then
+            local dim = { w = spr.w, h = spr.h }
+            local unique = {}
+            for i = 0, spr.w * spr.h - 1 do
+                local c = spr[i]
+                if c then
+                    local key = c[1] * 65536 + c[2] * 256 + c[3]
+                    if not unique[key] then
+                        local f = math.floor
+                        unique[key] = { f(c[1] * DIM_FACTOR), f(c[2] * DIM_FACTOR), f(c[3] * DIM_FACTOR) }
+                    end
+                    dim[i] = unique[key]
+                end
+            end
+            dim_add["dim_" .. name] = dim
+        end
+    end
+    for k, v in pairs(dim_add) do data[k] = v end
     return data
 end
 
@@ -72,14 +94,6 @@ local REMEMBERED_FLOOR_FG = { 10, 10, 10 }
 
 local TILE_DEFS = {
     wall = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall" },
-    wall_tl = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_tl" },
-    wall_t = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_t" },
-    wall_tr = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_tr" },
-    wall_l = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_l" },
-    wall_r = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_r" },
-    wall_bl = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_bl" },
-    wall_b = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_b" },
-    wall_br = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_br" },
     floor = { bg = PICO8.black, fg = PICO8.darkgrey, symbol = ".", sprite = "floor" },
     player = { bg = PICO8.black, fg = PICO8.lime, symbol = "@", sprite = "player" },
     scorpion = { bg = PICO8.black, fg = PICO8.brown, symbol = "r", sprite = "scorpion" },
@@ -92,8 +106,8 @@ local TILE_DEFS = {
     shield = { bg = PICO8.black, fg = PICO8.blue, symbol = "]", sprite = "shield" },
     stairs = { bg = PICO8.black, fg = PICO8.white, symbol = ">", sprite = "stairs" },
     fog = { bg = PICO8.black, fg = PICO8.black, symbol = " " },
-    remembered_wall = { bg = PICO8.black, fg = REMEMBERED_WALL_FG, symbol = "#" },
-    remembered_floor = { bg = PICO8.black, fg = REMEMBERED_FLOOR_FG, symbol = "." },
+    remembered_wall = { bg = PICO8.black, fg = REMEMBERED_WALL_FG, symbol = "#", sprite = "dim_wall" },
+    remembered_floor = { bg = PICO8.black, fg = REMEMBERED_FLOOR_FG, symbol = ".", sprite = "dim_floor" },
 }
 
 -- pixel buffer helpers --

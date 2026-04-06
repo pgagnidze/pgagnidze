@@ -19,21 +19,37 @@ local CREATURE_MAP = {
 }
 
 local SHEET_MAP = {
-    wall = { row = 0, col = 1 },
-    wall_tl = { row = 0, col = 0 },
-    wall_t = { row = 0, col = 1 },
-    wall_tr = { row = 0, col = 2 },
-    wall_l = { row = 1, col = 0 },
-    wall_r = { row = 1, col = 2 },
-    wall_bl = { row = 2, col = 0 },
-    wall_b = { row = 2, col = 1 },
-    wall_br = { row = 2, col = 2 },
     floor = { row = 0, col = 9 },
     stairs = { row = 7, col = 11 },
     potion = { row = 7, col = 13 },
 }
 
 local HAND_DRAWN = {
+    wall = {
+        palette = {
+            M = { 55, 40, 52 },
+            A = { 210, 120, 85 },
+            B = { 190, 105, 75 },
+        },
+        grid = {
+            "MMMMMMMMMMMMMMMM",
+            "MAAAAAAAMBBBBBBB",
+            "MAAAAAAAMBBBBBBB",
+            "MAAAAAAAMBBBBBBB",
+            "MMMMMMMMMMMMMMMM",
+            "BBBBMAAAAAAAMBBB",
+            "BBBBMAAAAAAAMBBB",
+            "BBBBMAAAAAAAMBBB",
+            "MMMMMMMMMMMMMMMM",
+            "MAAAAAAAMBBBBBBB",
+            "MAAAAAAAMBBBBBBB",
+            "MAAAAAAAMBBBBBBB",
+            "MMMMMMMMMMMMMMMM",
+            "BBBBMAAAAAAAMBBB",
+            "BBBBMAAAAAAAMBBB",
+            "BBBBMAAAAAAAMBBB",
+        },
+    },
     weapon = {
         palette = {
             W = { 255, 255, 235 },

@@ -590,39 +590,6 @@ end
 
 local tiles = require("tiles")
 
-local function is_wall(map, wx, wy)
-    if wy < 1 or wy > MAP_HEIGHT or wx < 1 or wx > MAP_WIDTH then return true end
-    return map[wy][wx] == TILE_WALL
-end
-
-local WALL_AUTOTILE = {
-    [0]  = "wall",     [1]  = "wall_l",
-    [2]  = "wall_r",   [3]  = "wall_r",
-    [4]  = "wall_t",   [5]  = "wall_tl",
-    [6]  = "wall_tr",  [7]  = "wall_t",
-    [8]  = "wall_b",   [9]  = "wall_bl",
-    [10] = "wall_br",  [11] = "wall_b",
-    [12] = "wall_b",   [13] = "wall_bl",
-    [14] = "wall_br",  [15] = "wall_br",
-}
-
-local function resolve_wall(map, wx, wy)
-    local t = is_wall(map, wx, wy - 1) and 0 or 8
-    local b = is_wall(map, wx, wy + 1) and 0 or 4
-    local l = is_wall(map, wx - 1, wy) and 0 or 2
-    local r = is_wall(map, wx + 1, wy) and 0 or 1
-    local key = t + b + l + r
-
-    if key > 0 then return WALL_AUTOTILE[key] end
-
-    if not is_wall(map, wx + 1, wy + 1) then return "wall_tl" end
-    if not is_wall(map, wx - 1, wy + 1) then return "wall_tr" end
-    if not is_wall(map, wx + 1, wy - 1) then return "wall_bl" end
-    if not is_wall(map, wx - 1, wy - 1) then return "wall_br" end
-
-    return "wall"
-end
-
 local function resolve_tile(state, wx, wy)
     if wy < 1 or wy > MAP_HEIGHT or wx < 1 or wx > MAP_WIDTH then
         return "wall"
@@ -654,8 +621,7 @@ local function resolve_tile(state, wx, wy)
 
     local tile = state.map[wy][wx]
     if tile == TILE_WALL then
-        if not visible then return "remembered_wall" end
-        return resolve_wall(state.map, wx, wy)
+        return visible and "wall" or "remembered_wall"
     elseif tile == TILE_STAIRS then
         return visible and "stairs" or "remembered_floor"
     end
@@ -681,8 +647,7 @@ end
 -- state export --
 
 local TILE_CHAR = {
-    wall = "#", wall_tl = "#", wall_t = "#", wall_tr = "#",
-    wall_l = "#", wall_r = "#", wall_bl = "#", wall_b = "#", wall_br = "#",
+    wall = "#",
     floor = ".", player = "@",
     scorpion = "r", snake = "s", mummy = "k", fairy = "g", griffin = "D",
     potion = "!", weapon = "/", shield = "]", stairs = ">",

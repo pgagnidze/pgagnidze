@@ -1,6 +1,30 @@
 local png = require("png")
 local font = require("font")
 
+local function prepare_sprites(data)
+    if not data then return nil end
+    for _, spr in pairs(data) do
+        local unique = {}
+        local px = spr.px
+        for i = 0, spr.w * spr.h - 1 do
+            local idx = i * 4
+            if px[idx + 4] > 0 then
+                local r, g, b = px[idx + 1], px[idx + 2], px[idx + 3]
+                local key = r * 65536 + g * 256 + b
+                if not unique[key] then
+                    unique[key] = { r, g, b }
+                end
+                spr[i] = unique[key]
+            end
+        end
+        spr.px = nil
+    end
+    return data
+end
+
+local ok, raw_sprites = pcall(require, "sprites")
+local sprites = ok and prepare_sprites(raw_sprites) or nil
+
 local tiles = {}
 
 local format = string.format
@@ -9,10 +33,11 @@ local sub = string.sub
 
 -- layout --
 
-local TILE_SIZE = 36
+local TILE_SIZE = 32
 local GRID = 7
 local GLYPH_W, GLYPH_H = 5, 7
 local GLYPH_SCALE = 3
+local SPRITE_SCALE = 2
 local CANVAS_W = TILE_SIZE * GRID
 local STATUS_H = 24
 local MSG_H = 20
@@ -46,18 +71,26 @@ local REMEMBERED_FLOOR_FG = { 10, 10, 10 }
 -- tile definitions --
 
 local TILE_DEFS = {
-    wall = { bg = PICO8.navy, fg = PICO8.darkgrey, symbol = "#" },
-    floor = { bg = PICO8.black, fg = PICO8.darkgrey, symbol = "." },
-    player = { bg = PICO8.black, fg = PICO8.lime, symbol = "@" },
-    rat = { bg = PICO8.black, fg = PICO8.brown, symbol = "r" },
-    snake = { bg = PICO8.black, fg = PICO8.green, symbol = "s" },
-    skeleton = { bg = PICO8.black, fg = PICO8.grey, symbol = "k" },
-    ghost = { bg = PICO8.black, fg = PICO8.lavender, symbol = "g" },
-    dragon = { bg = PICO8.black, fg = PICO8.red, symbol = "D" },
-    potion = { bg = PICO8.black, fg = PICO8.pink, symbol = "!" },
-    weapon = { bg = PICO8.black, fg = PICO8.yellow, symbol = "/" },
-    shield = { bg = PICO8.black, fg = PICO8.blue, symbol = "]" },
-    stairs = { bg = PICO8.black, fg = PICO8.white, symbol = ">" },
+    wall = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall" },
+    wall_tl = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_tl" },
+    wall_t = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_t" },
+    wall_tr = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_tr" },
+    wall_l = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_l" },
+    wall_r = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_r" },
+    wall_bl = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_bl" },
+    wall_b = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_b" },
+    wall_br = { bg = PICO8.brown, fg = PICO8.darkgrey, symbol = "#", sprite = "wall_br" },
+    floor = { bg = PICO8.black, fg = PICO8.darkgrey, symbol = ".", sprite = "floor" },
+    player = { bg = PICO8.black, fg = PICO8.lime, symbol = "@", sprite = "player" },
+    scorpion = { bg = PICO8.black, fg = PICO8.brown, symbol = "r", sprite = "scorpion" },
+    snake = { bg = PICO8.black, fg = PICO8.green, symbol = "s", sprite = "snake" },
+    mummy = { bg = PICO8.black, fg = PICO8.grey, symbol = "k", sprite = "mummy" },
+    fairy = { bg = PICO8.black, fg = PICO8.lavender, symbol = "g", sprite = "fairy" },
+    griffin = { bg = PICO8.black, fg = PICO8.red, symbol = "D", sprite = "griffin" },
+    potion = { bg = PICO8.black, fg = PICO8.pink, symbol = "!", sprite = "potion" },
+    weapon = { bg = PICO8.black, fg = PICO8.yellow, symbol = "/", sprite = "weapon" },
+    shield = { bg = PICO8.black, fg = PICO8.blue, symbol = "]", sprite = "shield" },
+    stairs = { bg = PICO8.black, fg = PICO8.white, symbol = ">", sprite = "stairs" },
     fog = { bg = PICO8.black, fg = PICO8.black, symbol = " " },
     remembered_wall = { bg = PICO8.black, fg = REMEMBERED_WALL_FG, symbol = "#" },
     remembered_floor = { bg = PICO8.black, fg = REMEMBERED_FLOOR_FG, symbol = "." },
@@ -88,6 +121,20 @@ local function draw_glyph(pixels, pw, ox, oy, ch, color, scale)
     end
 end
 
+local function blit_sprite(pixels, pw, ox, oy, spr, scale)
+    local sw = spr.w
+    for sy = 0, spr.h - 1 do
+        for sx = 0, sw - 1 do
+            local c = spr[sy * sw + sx]
+            if c then
+                fill_rect(pixels, pw,
+                    ox + sx * scale, oy + sy * scale,
+                    scale, scale, c)
+            end
+        end
+    end
+end
+
 local function draw_text(pixels, pw, x, y, text, color, scale)
     scale = scale or 2
     local spacing = GLYPH_W * scale + scale
@@ -108,11 +155,21 @@ end
 local function draw_tile(pixels, tx, ty, tile_type)
     local def = TILE_DEFS[tile_type] or TILE_DEFS.fog
     fill_rect(pixels, CANVAS_W, tx, ty, TILE_SIZE, TILE_SIZE, def.bg)
-    local gw = GLYPH_W * GLYPH_SCALE
-    local gh = GLYPH_H * GLYPH_SCALE
-    local ox = tx + floor((TILE_SIZE - gw) / 2)
-    local oy = ty + floor((TILE_SIZE - gh) / 2)
-    draw_glyph(pixels, CANVAS_W, ox, oy, def.symbol, def.fg, GLYPH_SCALE)
+
+    local spr = def.sprite and sprites and sprites[def.sprite]
+    if spr then
+        local sw = spr.w * SPRITE_SCALE
+        local sh = spr.h * SPRITE_SCALE
+        local ox = tx + floor((TILE_SIZE - sw) / 2)
+        local oy = ty + floor((TILE_SIZE - sh) / 2)
+        blit_sprite(pixels, CANVAS_W, ox, oy, spr, SPRITE_SCALE)
+    else
+        local gw = GLYPH_W * GLYPH_SCALE
+        local gh = GLYPH_H * GLYPH_SCALE
+        local ox = tx + floor((TILE_SIZE - gw) / 2)
+        local oy = ty + floor((TILE_SIZE - gh) / 2)
+        draw_glyph(pixels, CANVAS_W, ox, oy, def.symbol, def.fg, GLYPH_SCALE)
+    end
 end
 
 -- draw status bar --

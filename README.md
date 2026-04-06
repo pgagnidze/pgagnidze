@@ -7,7 +7,7 @@
 <table>
   <tr>
     <td colspan="5" align="center">
-      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=4" alt="dungeon" width="252" /></a>
+      <a href="https://gh-crawl.fly.dev/dungeon/info"><img src="https://gh-crawl.fly.dev/dungeon/view?v=5" alt="dungeon" width="224" /></a>
     </td>
   </tr>
   <tr>
@@ -38,7 +38,7 @@
 <details>
 <summary>How to play</summary>
 <br>
-<code>@</code> player <code>r</code> rat <code>s</code> snake <code>k</code> skeleton <code>g</code> ghost <code>D</code> dragon <code>!</code> potion <code>/</code> weapon <code>]</code> shield <code>></code> stairs
+<code>@</code> player <code>r</code> scorpion <code>s</code> snake <code>k</code> mummy <code>g</code> fairy <code>D</code> griffin <code>!</code> potion <code>/</code> weapon <code>]</code> shield <code>></code> stairs
 <br><br>
 Move into rooms to explore. Attack adjacent monsters. Pick up items. Find the stairs to descend deeper.
 <br>

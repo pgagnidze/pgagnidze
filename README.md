@@ -38,8 +38,6 @@
 <details>
 <summary>How to play</summary>
 <br>
-<code>@</code> player <code>r</code> scorpion <code>s</code> snake <code>k</code> mummy <code>g</code> fairy <code>D</code> griffin <code>!</code> potion <code>/</code> weapon <code>]</code> shield <code>></code> stairs
-<br><br>
 Move into rooms to explore. Attack adjacent monsters. Pick up items. Find the stairs to descend deeper.
 <br>
 Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com/luanvil/mote">mote</a>

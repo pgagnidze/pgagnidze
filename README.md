@@ -80,4 +80,4 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 - **[falsekin](https://pgagnidze.github.io/falsekin/)** - Caves of Qud survival guide
 - **[bolbo](https://bolbo.live/)** - Online multiplayer 2D football game
-- **[AI Printed Art](https://youtube.com/shorts/dmbboR47-c4)** - Text-to-product AI generator platform (archived)
+- **[AI Printed Art](https://youtube.com/shorts/dmbboR47-c4)** - Text-to-product AI generator platform

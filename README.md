@@ -47,9 +47,10 @@ Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com
 
 <!-- Stats Summary -->
 <!--START_SECTION:stats-summary-->
-I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 years** ago and since then I have pushed **3,754 commits**, opened **65 issues**, and received **2,147 stars** across my projects.
-<!--END_SECTION:stats-summary-->
 
+I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 years** ago and since then I have pushed **3,754 commits**, opened **65 issues**, and received **2,147 stars** across my projects.
+
+<!--END_SECTION:stats-summary-->
 
 </div>
 
@@ -75,7 +76,7 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 - **[flyon](https://github.com/pgagnidze/flyon)** - Self-hosted applications on a home server with Podman
 - **[dotfiles](https://github.com/pgagnidze/dotfiles)** - Personal dotfiles for Fedora
 
-#### Apps
+---
 
 - **[falsekin](https://github.com/pgagnidze/falsekin)** - Caves of Qud survival guide ([live](https://pgagnidze.github.io/falsekin/))
 - **[bolbo](https://github.com/pgagnidze/bolbo)** - Online multiplayer 2D football game ([live](https://bolbo.live/))

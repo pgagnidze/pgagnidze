@@ -74,3 +74,9 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 - **[ena](https://github.com/pgagnidze/ena)** - Georgian programming language
 - **[flyon](https://github.com/pgagnidze/flyon)** - Self-hosted applications on a home server with Podman
 - **[dotfiles](https://github.com/pgagnidze/dotfiles)** - Personal dotfiles for Fedora
+
+#### Apps
+
+- **[falsekin](https://github.com/pgagnidze/falsekin)** - Caves of Qud survival guide ([live](https://pgagnidze.github.io/falsekin/))
+- **[bolbo](https://github.com/pgagnidze/bolbo)** - Online multiplayer 2D football game ([live](https://bolbo.live/))
+- **[AI Printed Art](https://youtube.com/shorts/dmbboR47-c4)** - Text-to-product AI generator platform (archived)

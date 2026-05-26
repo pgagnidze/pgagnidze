@@ -47,7 +47,9 @@ Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com
 
 <!-- Stats Summary -->
 <!--START_SECTION:stats-summary-->
+
 I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 years** ago and since then I have pushed **3,857 commits**, opened **65 issues**, and received **2,277 stars** across my projects.
+
 <!--END_SECTION:stats-summary-->
 
 </div>
@@ -76,6 +78,6 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 ---
 
-- **[falsekin](https://pgagnidze.github.io/falsekin/)** - Caves of Qud survival guide
+- **[falsekin](https://falsekin.pages.dev/)** - Caves of Qud survival guide
 - **[bolbo](https://bolbo.pages.dev/)** - Online multiplayer 2D football game
 - **[AI Printed Art](https://youtube.com/shorts/dmbboR47-c4)** - Text-to-product AI generator platform

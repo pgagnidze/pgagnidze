@@ -40,7 +40,7 @@
 <br>
 Move into rooms to explore. Attack adjacent monsters. Pick up items. Find the stairs to descend deeper.
 <br>
-Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com/luanvil/mote">mote</a>
+Auto-resets after 30 min of inactivity · Powered by <a href="https://github.com/Owloops/mote">mote</a>
 </details>
 
 <!--END_SECTION:dungeon-->
@@ -54,19 +54,16 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 ## Projects
 
-### [Owloops](https://github.com/Owloops) - cli tools that work
+### [Owloops](https://github.com/Owloops) - dev tools that work
 
 - **[browserbird](https://github.com/Owloops/browserbird)** - Self-hosted AI agent for Slack with a browser and scheduler
 - **[claude-powerline](https://github.com/Owloops/claude-powerline)** - Vim-style powerline statusline for Claude Code
 - **[updo](https://github.com/Owloops/updo)** - Uptime monitoring CLI with alerting
 - **[cdko](https://github.com/Owloops/cdko)** - Multi-Account & Multi-Region CDK Orchestrator
 - **[tfjournal](https://github.com/Owloops/tfjournal)** - Record Terraform runs with git context
-
-### [luanvil](https://github.com/luanvil) - maintained lua tools
-
-- **[mote](https://github.com/luanvil/mote)** - Lua HTTP server with routing and middleware
-- **[lnko](https://github.com/luanvil/lnko)** - Simple stow-like dotfile linker
-- **[luast](https://github.com/luanvil/luast)** - Build standalone Lua executables
+- **[mote](https://github.com/Owloops/mote)** - Lua HTTP server with routing and middleware
+- **[lnko](https://github.com/Owloops/lnko)** - Simple stow-like dotfile linker
+- **[luast](https://github.com/Owloops/luast)** - Build standalone Lua executables
 
 ### [Personal](https://github.com/pgagnidze)
 

@@ -56,22 +56,16 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 ### [Owloops](https://github.com/Owloops) - dev tools that work
 
-- **[browserbird](https://github.com/Owloops/browserbird)** - Self-hosted AI agent for Slack with a browser and scheduler
 - **[claude-powerline](https://github.com/Owloops/claude-powerline)** - Vim-style powerline statusline for Claude Code
 - **[updo](https://github.com/Owloops/updo)** - Uptime monitoring CLI with alerting
-- **[cdko](https://github.com/Owloops/cdko)** - Multi-Account & Multi-Region CDK Orchestrator
 - **[tfjournal](https://github.com/Owloops/tfjournal)** - Record Terraform runs with git context
 - **[mote](https://github.com/Owloops/mote)** - Lua HTTP server with routing and middleware
 - **[lnko](https://github.com/Owloops/lnko)** - Simple stow-like dotfile linker
-- **[luast](https://github.com/Owloops/luast)** - Build standalone Lua executables
 
 ### [Personal](https://github.com/pgagnidze)
 
-- **[ena](https://github.com/pgagnidze/ena)** - Georgian programming language
 - **[flyon](https://github.com/pgagnidze/flyon)** - Self-hosted applications on a home server with Podman
 - **[dotfiles](https://github.com/pgagnidze/dotfiles)** - Personal dotfiles for Fedora
-
----
-
+- **[ena](https://ena-lang.org/)** - Georgian programming language
 - **[falsekin](https://falsekin.pages.dev/)** - Caves of Qud survival guide
 - **[bolbo](https://bolbo.pages.dev/)** - Online multiplayer 2D football game

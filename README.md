@@ -56,7 +56,6 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 
 ### [Owloops](https://github.com/Owloops) - dev tools that work
 
-- **[claude-powerline](https://github.com/Owloops/claude-powerline)** - Vim-style powerline statusline for Claude Code
 - **[updo](https://github.com/Owloops/updo)** - Uptime monitoring CLI with alerting
 - **[tfjournal](https://github.com/Owloops/tfjournal)** - Record Terraform runs with git context
 - **[mote](https://github.com/Owloops/mote)** - Lua HTTP server with routing and middleware

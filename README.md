@@ -64,6 +64,6 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 ### [Personal](https://github.com/pgagnidze)
 
 - **[flyon](https://codeberg.org/papungag/flyon)** - Self-hosted applications on a home server with Podman
-- **[dotfiles](https://codeberg.org/papungag/flyon)** - Personal dotfiles for Fedora
+- **[dotfiles](https://codeberg.org/papungag/dotfiles)** - Personal dotfiles for Fedora
 - **[ena](https://ena-lang.org/)** - Georgian programming language
 - **[falsekin](https://falsekin.pages.dev/)** - Caves of Qud survival guide

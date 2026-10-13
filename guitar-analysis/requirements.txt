@@ -1,0 +1,13 @@
+# Python 3.10 or 3.11 (basic-pitch/TensorFlow and madmom do not support 3.13)
+yt-dlp
+librosa
+soundfile
+demucs
+torch
+torchaudio
+basic-pitch[tf]
+pretty_midi
+numpy<2
+setuptools<81
+cython
+madmom @ git+https://github.com/CPJKU/madmom

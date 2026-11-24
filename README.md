@@ -66,3 +66,4 @@ I'm Papuna, an open-source developer and DevOps engineer. I joined GitHub **10 y
 - **[dotfiles](https://codeberg.org/papungag/dotfiles)** - Personal dotfiles for Fedora
 - **[ena](https://ena-lang.org/)** - Georgian programming language
 - **[falsekin](https://falsekin.pages.dev/)** - Caves of Qud survival guide
+- **[bolbo](https://bolbo.pages.dev/)** - 2D Online Football Multiplayer Game
